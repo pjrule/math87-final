@@ -1,0 +1,23 @@
+{
+    "name": "Test Simulation",
+    "description": "A basic simulation demonstrating how to work with this tool",
+    "num_simulations": 5,
+    "turns_per_simulation": 100,
+    "map": {
+        "type": "BasicMap",
+        "rows": 500,
+        "columns": 500
+    },
+    "lost_persons": [
+        {
+            "type": "RandomWalker",
+            "num": 1
+        }
+    ],
+    "searchers": [
+        {
+            "type": "RandomWalkSearcher",
+            "num": 1
+        }
+    ]
+}
