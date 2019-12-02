@@ -14,6 +14,7 @@ class StationarySearcher(searcher.Searcher):
     def init(self, start):
         self.current = start
         self.scenario_map.spawn_searcher(start)
+        self.history.append(self.current)
 
     def move(self):
         self.history.append(self.current)

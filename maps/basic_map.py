@@ -29,6 +29,8 @@ class BasicMap(Map):
         # Create the graph.
         # Nodes are tuples (e.g. (1,0))
         self.graph = nx.grid_graph(dim=[rows, cols])
+        self.rows = rows
+        self.cols = cols
         for node in self.graph.nodes:
             self.graph.nodes[node][NUM_LPS] = 0
             self.graph.nodes[node][NUM_SEARCHERS] = 0
@@ -98,3 +100,11 @@ class BasicMap(Map):
             num_lps = self.graph.nodes[node][NUM_LPS]
             num_searchers = self.graph.nodes[node][NUM_SEARCHERS]
             print(str(node) + ': L = ' + str(num_lps) + ", S = " + str(num_searchers))
+
+    def numRows(self):
+        return self.rows
+
+    def numColumns(self):
+        return self.cols
+
+

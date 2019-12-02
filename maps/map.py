@@ -129,3 +129,19 @@ class Map(abc.ABC):
         :return: None
         """
         raise NotImplementedError('Should be implemented by subclasses')
+
+    @abc.abstractmethod
+    def numRows(self):
+        """
+        Returns number of rows
+        :return: number of rows
+        """
+        raise NotImplementedError('Should be implemented by subclasses')
+
+    @abc.abstractmethod
+    def numColumns(self):
+        """
+        Returns number of columns
+        :return: number of columns
+        """
+        raise NotImplementedError('Should be implemented by subclasses')
