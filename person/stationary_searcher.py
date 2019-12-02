@@ -1,4 +1,4 @@
-import searcher
+from person import searcher
 
 
 class StationarySearcher(searcher.Searcher):

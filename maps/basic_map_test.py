@@ -1,7 +1,7 @@
 import unittest
-from basic_map import BasicMap
-from stationary_lost_person import StationaryLostPerson
-from stationary_searcher import StationarySearcher
+from maps.basic_map import BasicMap
+from person.stationary_lost_person import StationaryLostPerson
+from person.stationary_searcher import StationarySearcher
 
 
 class BasicMapTest(unittest.TestCase):

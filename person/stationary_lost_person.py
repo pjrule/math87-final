@@ -1,4 +1,4 @@
-import lostperson
+from person import lostperson
 
 
 class StationaryLostPerson(lostperson.LostPerson):
@@ -13,6 +13,7 @@ class StationaryLostPerson(lostperson.LostPerson):
     def init(self, start):
         self.current = start
         self.scenario_map.spawn_lost_person(start)
+        self.history.append(self.current)
 
     def move(self):
         self.history.append(self.current)

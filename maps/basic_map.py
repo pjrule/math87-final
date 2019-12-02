@@ -1,4 +1,4 @@
-from map import Map
+from maps.map import Map
 import networkx as nx
 
 
