@@ -6,7 +6,6 @@ class Map(abc.ABC):
     The Map is a bounded, discrete, two dimensional world that serves
     as a setting for simulating search-and-rescue missions.
     """
-
     @abc.abstractmethod
     def get_cost(self, v1, v2):
         """
@@ -62,12 +61,71 @@ class Map(abc.ABC):
         raise NotImplementedError('Should be implemented by subclasses')
 
     @abc.abstractmethod
-    def contains_searcher(self, v):
+    def contains_searcher(self, v, current_location):
         """
         Returns true if location 'v' contains a searcher AND
         is visible from the current vantage point.
         :param v: the location where a searcher could be
+        :param current_location: the current vantage point
         :return: true if location 'v' contains a searcher AND
         is visible from the current vantage point, false otherwise.
+        """
+        raise NotImplementedError('Should be implemented by subclasses')
+
+    @abc.abstractmethod
+    def move_lost_person(self, start, end):
+        """
+        Moves a lost person from the start location to the end location,
+        if allowed by the map.
+        :param start: starting vertex (tuple)
+        :param end: ending vertex (tuple)
+        :return: true if move was successful, false otherwise
+        """
+        raise NotImplementedError('Should be implemented by subclasses')
+
+    @abc.abstractmethod
+    def move_searcher(self, start, end):
+        """
+        Moves a searcher from the start location to the end location,
+        if allowed by the map.
+        :param start: starting vertex (tuple)
+        :param end: ending vertex (tuple)
+        :return: true if move was successful, false otherwise
+        """
+        raise NotImplementedError('Should be implemented by subclasses')
+
+    @abc.abstractmethod
+    def spawn_lost_person(self, start):
+        """
+        Spawns a new lost person at the provided starting location.
+        :param start: the starting location for the lost person
+        :return:
+        """
+        raise NotImplementedError('Should be implemented by subclasses')
+
+    @abc.abstractmethod
+    def spawn_searcher(self, start):
+        """
+        Spawns a new searcher at the provided starting location.
+        :param start: the starting location for the searcher
+        :return:
+        """
+        raise NotImplementedError('Should be implemented by subclasses')
+
+    @abc.abstractmethod
+    def recover_lost_person(self, v):
+        """
+        Recovers a lost person by removing him from the map.
+        :param v: the lost person's location
+        :return:
+        """
+        raise NotImplementedError('Should be implemented by subclasses')
+
+    @abc.abstractmethod
+    def print(self):
+        """
+        Prints a text version of the grid graph, including locations
+        of the different units.
+        :return: None
         """
         raise NotImplementedError('Should be implemented by subclasses')
