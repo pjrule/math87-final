@@ -145,3 +145,12 @@ class Map(abc.ABC):
         :return: number of columns
         """
         raise NotImplementedError('Should be implemented by subclasses')
+
+    @abc.abstractmethod
+    def get_shortest_path(self, start, end):
+        """
+        The shortest path between two points in the map
+        :param start: Starting point
+        :param end: Ending point
+        :return:
+        """

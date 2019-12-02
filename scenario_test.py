@@ -4,6 +4,7 @@ from scenario import Scenario
 from person.stationary_lost_person import StationaryLostPerson
 from person.stationary_searcher import StationarySearcher
 from person.random_walk_lost_person import RandomWalkLostPerson
+from person.shortest_path_lost_person import ShortestPathLostPerson
 
 
 class ScenarioTest(unittest.TestCase):
@@ -23,7 +24,7 @@ class ScenarioTest(unittest.TestCase):
         searcher01.init((0, 0))  # people can be started in the same place
 
         s = Scenario(m, [lp00, lp01], [searcher00, searcher01])
-        s.simulate(10)  # Simulate for ten time steps
+        s.simulate(10)  # Simulate for N time steps
 
     def test_scenario_someFound(self):
         m = BasicMap(10, 10)
@@ -41,7 +42,7 @@ class ScenarioTest(unittest.TestCase):
         searcher01.init((2, 5))
 
         s = Scenario(m, [lp00, lp01], [searcher00, searcher01])
-        s.simulate(10)  # Simulate for ten time steps
+        s.simulate(10)  # Simulate for N time steps
 
 
     def test_scenario_allFound(self):
@@ -60,7 +61,7 @@ class ScenarioTest(unittest.TestCase):
         searcher01.init((3, 5))
 
         s = Scenario(m, [lp00, lp01], [searcher00, searcher01])
-        s.simulate(10)  # Simulate for ten time steps
+        s.simulate(10)  # Simulate for N time steps
 
     def test_scenario_randomWalker(self):
         m = BasicMap(10, 10)
@@ -74,7 +75,23 @@ class ScenarioTest(unittest.TestCase):
         searcher00.init((4, 8))
 
         s = Scenario(m, [lp00], [searcher00])
-        s.simulate(10)  # Simulate for ten time steps
+        s.simulate(10)  # Simulate for N time steps
+        print(lp00.get_history())
+        print(searcher00.get_history())
+
+    def test_scenario_shortestPath(self):
+        m = BasicMap(10, 10)
+
+        # Add some lost persons to the map
+        lp00 = ShortestPathLostPerson(m, (0, 9))
+        lp00.init((2, 5))
+
+        # Add some searchers to the map
+        searcher00 = StationarySearcher(m)
+        searcher00.init((1, 9))
+
+        s = Scenario(m, [lp00], [searcher00])
+        s.simulate(100)  # Simulate for N time steps
         print(lp00.get_history())
         print(searcher00.get_history())
 

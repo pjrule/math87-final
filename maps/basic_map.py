@@ -35,9 +35,13 @@ class BasicMap(Map):
             self.graph.nodes[node][NUM_LPS] = 0
             self.graph.nodes[node][NUM_SEARCHERS] = 0
 
+        # Set all edge weights to 1
+        for edge in self.graph.edges:
+            self.graph.edges[edge]['weight'] = 1
+
     def get_cost(self, v1, v2):
-        # Zero cost to move anywhere on the simple map.
-        return 0
+        # Same cost to move anywhere on the simple map.
+        return self.graph.edges[(v1, v2)]['weight']
 
     def get_visibility(self, v):
         # Can only see neighboring nodes.
@@ -107,4 +111,5 @@ class BasicMap(Map):
     def numColumns(self):
         return self.cols
 
-
+    def get_shortest_path(self, start, end):
+        return nx.shortest_path(self.graph, start, end)
