@@ -17,6 +17,7 @@ class RandomWalkLostPerson(lostperson.LostPerson):
         # Can move up, down, left, right, or remain stationary with
         # equal probability (1/5)
         choice = random.randint(1, 6)
+        old_location = self.current
         new_location = list(self.current)
         if choice == 1:  # UP
             if self.current[0] > 0:
@@ -32,6 +33,7 @@ class RandomWalkLostPerson(lostperson.LostPerson):
                 new_location[1] += 1
         self.current = tuple(new_location)
         self.history.append(self.current)
+        #self.scenario_map.move_lost_person(old_location, new_location)
 
     def get_history(self):
         return self.history

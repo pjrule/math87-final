@@ -5,6 +5,7 @@ from person.stationary_lost_person import StationaryLostPerson
 from person.stationary_searcher import StationarySearcher
 from person.random_walk_lost_person import RandomWalkLostPerson
 from person.shortest_path_lost_person import ShortestPathLostPerson
+from person.random_walk_searcher import RandomWalkSearcher
 
 
 class ScenarioTest(unittest.TestCase):
@@ -94,6 +95,25 @@ class ScenarioTest(unittest.TestCase):
         s.simulate(100)  # Simulate for N time steps
         print(lp00.get_history())
         print(searcher00.get_history())
+
+    def test_scenario_one_random_searcher(self):
+        m = BasicMap(15, 15)
+
+        middle = (7,8)
+
+        # Add some lost persons to the map
+        lp00 = RandomWalkLostPerson(m)
+        lp00.init(middle)
+
+        # Add some searchers to the map
+        searcher00 = RandomWalkSearcher(m)
+        searcher00.init(middle)
+
+        s = Scenario(m, [lp00], [searcher00])
+        s.simulate(100)  # Simulate for N time steps
+        print(lp00.get_history())
+        print(searcher00.get_history())
+
 
 if __name__ == '__main__':
     unittest.main()

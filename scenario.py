@@ -33,7 +33,16 @@ class Scenario:
         self.searchers = searchers
         self.num_rescued = 0
 
+    def add_latency(self):
+        for i in range(100):
+            for lost_person in self.lost_persons:
+                lost_person.move()
+
     def simulate(self, num_steps, viewing_mode=ViewingMode.NONE):
+
+        # UNCOMMENT THIS to add latency
+        #self.add_latency()
+
         """
         Runs the scenario.
         :param num_steps: The number of discrete time steps, or turns.
