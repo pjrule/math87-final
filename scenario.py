@@ -27,21 +27,23 @@ class Scenario:
     step, or 'turn'.
     """
 
-    def __init__(self, scenario_map, lost_persons, searchers):
+    def __init__(self, scenario_map, lost_persons, searchers, latency = 10):
         self.scenario_map = scenario_map
         self.lost_persons = lost_persons
         self.searchers = searchers
         self.num_rescued = 0
+        self.latency = latency
 
     def add_latency(self):
-        for i in range(20):
+        for i in range(self.latency):
             for lost_person in self.lost_persons:
                 lost_person.move()
 
-    def simulate(self, num_steps, viewing_mode=ViewingMode.NONE):
+    def simulate(self, num_steps, viewing_mode=ViewingMode.NONE , shortest_path = False):
 
         # To add latency
-        self.add_latency()
+        if not shortest_path:
+            self.add_latency()
 
         """
         Runs the scenario.
@@ -79,6 +81,7 @@ class Scenario:
                 break
             else:
                 count += 1
+        return count
 
 
 
