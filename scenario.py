@@ -34,7 +34,7 @@ class Scenario:
         self.num_rescued = 0
 
     def add_latency(self):
-        for i in range(10):
+        for i in range(20):
             for lost_person in self.lost_persons:
                 lost_person.move()
 

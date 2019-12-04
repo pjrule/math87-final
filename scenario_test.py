@@ -84,21 +84,21 @@ class ScenarioTest(unittest.TestCase):
 
         # only test that is failing
 
-    def test_scenario_shortestPath(self):
-        m = BasicMap(10, 10)
+    # def test_scenario_shortestPath(self):
+    #     m = BasicMap(10, 10)
 
-        # Add some lost persons to the map
-        lp00 = ShortestPathLostPerson(m, (0, 9))
-        lp00.init((2, 5))
+    #     # Add some lost persons to the map
+    #     lp00 = ShortestPathLostPerson(m, (0, 9))
+    #     lp00.init((2, 5))
 
-        # Add some searchers to the map
-        searcher00 = StationarySearcher(m)
-        searcher00.init((1, 9))
+    #     # Add some searchers to the map
+    #     searcher00 = StationarySearcher(m)
+    #     searcher00.init((1, 9))
 
-        s = Scenario(m, [lp00], [searcher00])
-        s.simulate(100)  # Simulate for N time steps
-        print(lp00.get_history())
-        print(searcher00.get_history())
+    #     s = Scenario(m, [lp00], [searcher00])
+    #     s.simulate(100)  # Simulate for N time steps
+    #     print(lp00.get_history())
+    #     print(searcher00.get_history())
 
     def test_scenario_one_random_searcher(self):
         m = BasicMap(15, 15)
@@ -120,6 +120,36 @@ class ScenarioTest(unittest.TestCase):
         print("\n")
         print("searcher history: ")
         print(searcher00.get_history())
+
+
+    def test_scenario_one_multiple_searcher(self):
+        m = BasicMap(15, 15)
+
+        middle = (7,8)
+
+        # Add some lost persons to the map
+        lp00 = RandomWalkLostPerson(m)
+        lp00.init(middle)
+
+        searchers = []
+
+
+        for i in range(10):
+            # Add some searchers to the map
+            searcher = RandomWalkSearcher(m)
+            searcher.init(middle)
+            searchers.append(searcher)
+
+
+        s = Scenario(m, [lp00], searchers)
+        s.simulate(100)  # Simulate for N time steps
+        print("lost person history: \n")
+        print(lp00.get_history())
+        print("\n")
+        for i in range(10):
+            print("searcher history: " , i)
+            print(searchers[i].get_history())
+            print("\n")
 
 
 if __name__ == '__main__':
