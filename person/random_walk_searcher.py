@@ -15,7 +15,6 @@ class RandomWalkSearcher(searcher.Searcher):
 	    self.history.append(self.current)
 
 	def move(self):
-		print(self.current)
 		# Can move up, down, left, right, or remain stationary with
 		# equal probability (1/5)
 		choice = random.randint(1, 6)
