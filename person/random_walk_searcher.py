@@ -35,11 +35,13 @@ class RandomWalkSearcher(searcher.Searcher):
 		self.current = tuple(new_location)
 		self.history.append(self.current)
 
+		## Added this to update the board
+		self.scenario_map.move_searcher(old_location, self.current)
+
 	def check_for_lost_persons(self):
 		num_found = 0
 		visible_nodes = self.scenario_map.get_visibility(self.current)
 		for node in visible_nodes:
-			print(node)
 			if self.scenario_map.contains_lost_person(node, self.current):
 				self.scenario_map.recover_lost_person(node)
 				num_found += 1

@@ -33,7 +33,9 @@ class RandomWalkLostPerson(lostperson.LostPerson):
                 new_location[1] += 1
         self.current = tuple(new_location)
         self.history.append(self.current)
-        #self.scenario_map.move_lost_person(old_location, new_location)
+
+        ## added this to update scenario map
+        self.scenario_map.move_lost_person(old_location, self.current)
 
     def get_history(self):
         return self.history

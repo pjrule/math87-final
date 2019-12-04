@@ -80,6 +80,10 @@ class ScenarioTest(unittest.TestCase):
         print(lp00.get_history())
         print(searcher00.get_history())
 
+
+
+        # only test that is failing
+
     def test_scenario_shortestPath(self):
         m = BasicMap(10, 10)
 
@@ -111,7 +115,10 @@ class ScenarioTest(unittest.TestCase):
 
         s = Scenario(m, [lp00], [searcher00])
         s.simulate(100)  # Simulate for N time steps
+        print("lost person history: \n")
         print(lp00.get_history())
+        print("\n")
+        print("searcher history: ")
         print(searcher00.get_history())
 
 

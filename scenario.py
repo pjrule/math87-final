@@ -34,14 +34,14 @@ class Scenario:
         self.num_rescued = 0
 
     def add_latency(self):
-        for i in range(100):
+        for i in range(10):
             for lost_person in self.lost_persons:
                 lost_person.move()
 
     def simulate(self, num_steps, viewing_mode=ViewingMode.NONE):
 
-        # UNCOMMENT THIS to add latency
-        #self.add_latency()
+        # To add latency
+        self.add_latency()
 
         """
         Runs the scenario.
@@ -60,6 +60,12 @@ class Scenario:
             for searcher in self.searchers:
                 self.num_rescued += searcher.check_for_lost_persons()
 
+            if self.num_rescued == len(self.lost_persons):
+                print('Mission accomplished!')
+                break
+            else:
+                count += 1
+
             for searcher in self.searchers:
                 searcher.move()
 
@@ -73,5 +79,7 @@ class Scenario:
                 break
             else:
                 count += 1
+
+
 
         print('*** Scenario finished. Num iterations: %d, Rescued: %d/%d' % (count, self.num_rescued, len(self.lost_persons)))
