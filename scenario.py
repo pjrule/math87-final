@@ -64,8 +64,6 @@ class Scenario:
             if self.num_rescued == len(self.lost_persons):
                 print('Mission accomplished!')
                 break
-            else:
-                count += 1
 
             for searcher in self.searchers:
                 searcher.move()
@@ -78,7 +76,7 @@ class Scenario:
             if self.num_rescued == len(self.lost_persons):
                 print('Mission accomplished!')
                 break
-            else:
-                count += 1
+
+            count += 1
         print('*** Scenario finished. Num iterations: %d, Rescued: %d/%d' % (count, self.num_rescued, len(self.lost_persons)))
         return count

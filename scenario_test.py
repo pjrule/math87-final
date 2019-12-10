@@ -122,7 +122,6 @@ class ScenarioTest(unittest.TestCase):
         print("searcher history: ")
         print(searcher00.get_history())
 
-
     def test_scenario_one_multiple_searcher(self):
         m = BasicMap(15, 15)
 
@@ -152,11 +151,10 @@ class ScenarioTest(unittest.TestCase):
             print(searchers[i].get_history())
             print("\n")
 
-
     def test_quadrant_partitioner(self):
-        m = BasicMap(15, 15)
+        m = BasicMap(25, 25)
 
-        middle = (7,7)
+        middle = (12, 12)
 
         # Add some lost persons to the map
         lp00 = RandomWalkLostPerson(m)
@@ -191,7 +189,7 @@ class ScenarioTest(unittest.TestCase):
         s03.init(middle)
         searchers.append(s03)
 
-        scenario = Scenario(m, [lp00], searchers)
+        scenario = Scenario(m, [lp00], searchers, latency=50)
         scenario.simulate(100)
 
         print("lost person history: \n")
