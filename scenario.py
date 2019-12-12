@@ -53,7 +53,7 @@ class Scenario:
         """
         count = 0
         for i in range(0, num_steps):
-            print('Step: ' + str(i))
+            #print('Step: ' + str(i))
             for lost_person in self.lost_persons:
                 lost_person.move()
 
@@ -63,10 +63,8 @@ class Scenario:
                 self.num_rescued += searcher.check_for_lost_persons()
 
             if self.num_rescued == len(self.lost_persons):
-                print('Mission accomplished!')
+                #print('Mission accomplished!')
                 break
-            else:
-                count += 1
 
             for searcher in self.searchers:
                 searcher.move()
@@ -77,7 +75,7 @@ class Scenario:
                 self.num_rescued += searcher.check_for_lost_persons()
 
             if self.num_rescued == len(self.lost_persons):
-                print('Mission accomplished!')
+                #print('Mission accomplished!')
                 break
             else:
                 count += 1
