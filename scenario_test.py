@@ -242,6 +242,47 @@ class ScenarioTest(unittest.TestCase):
             print(len(searchers[i].get_history()))
             print("\n")
 
+    def test_vertical_sweep_searcher(self):
+        m = BasicMap(101, 101)
+        # m.print() interval: [0, 29]
+
+        middle = (50, 50)
+
+        # Add some lost persons to the map
+        lp00 = RandomWalkLostPerson(m)
+        lp00.init(middle)
+
+        num_searchers = 10
+        lane_size = int(30 / num_searchers)
+        lanes = []
+        lower = 0
+        upper = lane_size - 1
+        lanes.append((lower, upper))
+        while upper < 29:
+            lower = upper + 1
+            upper = upper + lane_size
+            lanes.append((lower, upper))
+
+        searchers = []
+        for i in range(0, len(lanes)):
+            searcher = VerticalSweepSearcher(m, lanes[i])
+            searcher.init((0, math.floor((lanes[i][0] + lanes[i][1])/2)))
+            searchers.append(searcher)
+
+        self.assertTrue(len(searchers) == num_searchers)
+        scenario = Scenario(m, [lp00], searchers)
+        scenario.simulate(100)
+
+        print("lost person history: \n")
+        print(lp00.get_history())
+        print("\n")
+        for i in range(num_searchers):
+            print("searcher history: " , i)
+            print(searchers[i].get_history())
+            print(len(searchers[i].get_history()))
+            print("\n")
+
+
 
 if __name__ == '__main__':
     unittest.main()

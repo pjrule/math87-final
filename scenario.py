@@ -52,7 +52,7 @@ class Scenario:
 
         count = 0
         for i in range(0, num_steps):
-            print('Step: ' + str(i))
+            # print('Step: ' + str(i))
             for lost_person in self.lost_persons:
                 lost_person.move()
 
@@ -75,6 +75,7 @@ class Scenario:
 
             if self.num_rescued == len(self.lost_persons):
                 print('Mission accomplished!')
+                count += 1
                 break
 
             count += 1

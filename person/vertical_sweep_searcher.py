@@ -11,7 +11,7 @@ class VerticalSweepSearcher(searcher.Searcher):
             self.col_range = (0, self.scenario_map.numColumns() - 1)
         else:
             self.col_range = col_range
-        print(self.col_range)
+        # print(self.col_range)
 
     def init(self, start):
         self.current = start
