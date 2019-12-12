@@ -122,14 +122,7 @@ def create_searchers_vs_time(max_searchers, latency, number_samples, num_time_st
 if __name__ == '__main__':
     #create_latency_vs_percent_found(max_latency, number_samples, max_timestep):
     #create_searchers_vs_time(10, 10, 100, 100)
-<<<<<<< HEAD
     #create_latency_vs_percent_found(100, 10000, 100)
     create_searchers_vs_time(100, 60, 10000, 100)
-    
+    # create_latency_vs_percent_found(50, 100, 50)
 
-
-
-        
-=======
-    create_latency_vs_percent_found(50, 100, 50)
->>>>>>> ab5feb8e7f5811afb0964968895d42dc0fe94de5
