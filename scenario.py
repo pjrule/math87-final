@@ -40,30 +40,28 @@ class Scenario:
                 lost_person.move()
 
     def simulate(self, num_steps, viewing_mode=ViewingMode.NONE , shortest_path = False):
-
-        # To add latency
-        if not shortest_path:
-            self.add_latency()
-
         """
         Runs the scenario.
         :param num_steps: The number of discrete time steps, or turns.
         :param viewing_mode: The preferred viewing mode.
         :return: Percentage of lost persons found
         """
+        # To add latency
+        if not shortest_path:
+            self.add_latency()
         count = 0
         for i in range(0, num_steps):
-            print('Step: ' + str(i))
             for lost_person in self.lost_persons:
                 lost_person.move()
 
+                
             # Before the searchers move, see if any lost persons
             # have moved into visible range.
             for searcher in self.searchers:
                 self.num_rescued += searcher.check_for_lost_persons()
 
             if self.num_rescued == len(self.lost_persons):
-                print('Mission accomplished!')
+                #print('Mission accomplished!')
                 break
             else:
                 count += 1
@@ -77,7 +75,9 @@ class Scenario:
                 self.num_rescued += searcher.check_for_lost_persons()
 
             if self.num_rescued == len(self.lost_persons):
-                print('Mission accomplished!')
+                for lost_person in self.lost_persons:
+                    lost_person.history.append(lost_person.history[-1])
+                #print('Mission accomplished!')
                 break
             else:
                 count += 1
