@@ -62,7 +62,7 @@ class Scenario:
                 self.num_rescued += searcher.check_for_lost_persons()
 
             if self.num_rescued == len(self.lost_persons):
-                print('Mission accomplished!')
+                #print('Mission accomplished!')
                 break
 
             for searcher in self.searchers:
