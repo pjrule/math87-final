@@ -39,18 +39,17 @@ class Scenario:
             for lost_person in self.lost_persons:
                 lost_person.move()
 
-    def simulate(self, num_steps, viewing_mode=ViewingMode.NONE , shortest_path = False):
-
-        # To add latency
-        if not shortest_path:
-            self.add_latency()
-
+    def simulate(self, num_steps, viewing_mode=ViewingMode.NONE, shortest_path = False):
         """
         Runs the scenario.
         :param num_steps: The number of discrete time steps, or turns.
         :param viewing_mode: The preferred viewing mode.
         :return: Percentage of lost persons found
         """
+        # To add latency
+        if not shortest_path:
+            self.add_latency()
+
         count = 0
         for i in range(0, num_steps):
             #print('Step: ' + str(i))
@@ -77,10 +76,7 @@ class Scenario:
             if self.num_rescued == len(self.lost_persons):
                 #print('Mission accomplished!')
                 break
-            else:
-                count += 1
-        return count
 
-
-
+            count += 1
         print('*** Scenario finished. Num iterations: %d, Rescued: %d/%d' % (count, self.num_rescued, len(self.lost_persons)))
+        return count
