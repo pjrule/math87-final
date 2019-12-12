@@ -13,7 +13,7 @@ def create_latency_vs_timestep(max_latency, number_samples, max_timestep):
 
     for i in range(max_latency):
         total = 0
-        for i in range(number_samples):
+        for j in range(number_samples):
 
             m = BasicMap(15, 15)
 
@@ -70,10 +70,10 @@ def create_latency_vs_percent_found(max_latency, number_samples, max_timestep):
         iterations.append(perc_found * 100)
 
 
-    plt.title("latency vs percent found")
+    plt.title("Latency vs Lost Percentage Found Rate")
     plt.plot(list(range(max_latency)),iterations)
-    plt.xlabel('latency')
-    plt.ylabel('percent found')
+    plt.xlabel('Latency')
+    plt.ylabel('Percent Found')
     plt.show()
 
 
@@ -83,7 +83,7 @@ def create_searchers_vs_time(max_searchers, latency, number_samples, num_time_st
 
     m = BasicMap(15, 15)
     middle = (7,7)
-    
+
     for num_searchers in range(1, max_searchers):
         total = 0
         for i in range(number_samples):
@@ -110,13 +110,14 @@ def create_searchers_vs_time(max_searchers, latency, number_samples, num_time_st
 
 
     plt.title("searchers vs time step")
-    plt.plot(list(range(1, max_searchers)),iterations)
+    plt.plot(list(range(max_searchers - 1)),iterations)
     plt.xlabel('searchers')
     plt.ylabel('time step')
     plt.show()
 
 if __name__ == '__main__':
     create_searchers_vs_time(10, 10, 10000, 100)
-    #create_latency_vs_percent_found(50, 100, 50)
-
-        
+    #create_latency_vs_percent_found(max_latency, number_samples, max_timestep):
+    #create_searchers_vs_time(10, 10, 100, 100)
+    #create_latency_vs_percent_found(100, 10000, 100)
+    create_searchers_vs_time(100, 60, 10000, 100)

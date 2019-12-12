@@ -17,7 +17,7 @@ class RandomWalkLostPerson(lostperson.LostPerson):
         # Can move up, down, left, right, or remain stationary with
         # equal probability (1/5)
         choice = random.randint(1, 5)
-        old_location = tuple(self.current)
+        old_location = self.current
         new_location = list(self.current)
         if choice == 1:  # UP
             if self.current[0] > 0:
