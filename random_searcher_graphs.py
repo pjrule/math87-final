@@ -125,4 +125,3 @@ if __name__ == '__main__':
     #create_latency_vs_percent_found(100, 10000, 100)
     create_searchers_vs_time(100, 60, 10000, 100)
     # create_latency_vs_percent_found(50, 100, 50)
-
