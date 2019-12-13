@@ -51,7 +51,7 @@ class Scenario:
             self.add_latency()
         count = 0
         for i in range(0, num_steps):
-            #print('Step: ' + str(i))
+            # print('Step: ' + str(i))
             for lost_person in self.lost_persons:
                 lost_person.move()
 
