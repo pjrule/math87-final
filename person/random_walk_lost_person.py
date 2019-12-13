@@ -36,6 +36,7 @@ class RandomWalkLostPerson(lostperson.LostPerson):
 
         ## added this to update scenario map
         self.scenario_map.move_lost_person(old_location, self.current)
+            
 
     def get_history(self):
         return self.history
