@@ -65,10 +65,12 @@ class BasicMap(Map):
 
     def move_lost_person(self, start, end):
         if self.graph.nodes[start][NUM_LPS] <= 0:
-            print('No lost person at this start location')
+            print('[Missing] No lost person at this start location')
+            print(start, '->', end)
             return False
         if end not in self.get_visibility(start):
-            print('Cannot travel greater than max visibility in one time step')
+            print('[Missing] Cannot travel greater than max visibility in one time step')
+            print(start, '->', end)
             return False
         # Now move the lost person
         self.graph.nodes[start][NUM_LPS] -= 1
@@ -76,10 +78,11 @@ class BasicMap(Map):
 
     def move_searcher(self, start, end):
         if self.graph.nodes[start][NUM_SEARCHERS] <= 0:
-            print('No searcher at this start location')
+            #print('No searcher at this start location')
             return False
         if end not in self.get_visibility(start):
-            print('Cannot travel greater than max visibility in one time step')
+            print('[Searcher] Cannot travel greater than max visibility in one time step')
+            print(start, '->', end)
             return False
         # Now move the searcher
         self.graph.nodes[start][NUM_SEARCHERS] -= 1
@@ -93,11 +96,11 @@ class BasicMap(Map):
 
     def recover_lost_person(self, v):
         if self.graph.nodes[v][NUM_LPS] <= 0:
-            print('No lost person at this location to recover')
+            #print('No lost person at this location to recover')
             return False
         else:
             self.graph.nodes[v][NUM_LPS] -= 1
-
+            
     def print(self):
         print(len(self.graph.nodes))
         for node in self.graph.nodes:
